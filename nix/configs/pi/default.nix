@@ -49,31 +49,7 @@
 
     # PROGRAMS AND SERVICES
 
-    programs = {
-        git = {
-            enable = true;
-            lfs.enable = true;
-            config = {
-                init.defaultBranch = "main";
-                core.editor = "vim";
-                user = {
-                    name = "piquel";
-                    email = "piquel@piquel.fr";
-                };
-                url = {
-                    "git@github.com:" = {
-                        insteadOf = [ "https://github.com/" ];
-                    };
-                };
-                filter."lfs" = {
-                    clean = "git-lfs clean -- %f";
-                    smudge = "git-lfs smudge -- %f";
-                    process = "git-lfs filter-process";
-                    required = true;
-                };
-            };
-        };
-    };
+    programs.git.enable = true;
 
     services = {
         zsh.enable = true;
