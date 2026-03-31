@@ -6,7 +6,7 @@
 
         inputs.dotfiles.nixosModules.tmux
         inputs.dotfiles.nixosModules.zsh
-        inputs.dotfiles.nixosModules.nvim
+        #inputs.dotfiles.nixosModules.nvim
 
         raspberry-pi-5.base
         raspberry-pi-5.page-size-16k
@@ -84,6 +84,6 @@
                 PermitRootLogin = "no";
             };
         };
-        nvim.enable = true;
+        #nvim.enable = true;
     };
 }
