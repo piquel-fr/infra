@@ -30,11 +30,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1774976616,
-        "narHash": "sha256-EZpS143CSVeuH/o5RZZ17c8EGCtv9ONEikbzwi0y6pQ=",
+        "lastModified": 1774978172,
+        "narHash": "sha256-RKZKRRdPm7cZM9wxj0PP6RqWgzbnEyvwEzMzqdzRYGk=",
         "owner": "PiquelChips",
         "repo": "dotfiles",
-        "rev": "a3fa967624a89a2e91ed9318117016156b6f8372",
+        "rev": "dd17dadd58741660d4cfb05ed1dc7a0fb8564a6a",
         "type": "github"
       },
       "original": {
