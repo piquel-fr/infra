@@ -6,6 +6,7 @@
 
         inputs.dotfiles.nixosModules.tmux
         inputs.dotfiles.nixosModules.zsh
+        # TODO: can't find this module for some reason
         #inputs.dotfiles.nixosModules.nvim
 
         raspberry-pi-5.base
@@ -24,6 +25,7 @@
         shell = pkgs.zsh;
         packages = with pkgs; [
             wakeonlan
+            inputs.dotfiles.packages.${pkgs.stdenv.hostPlatform.system}.piquel-vim
         ];
         openssh.authorizedKeys.keys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHVqRluVYJXXoNYyFQzkZm2v2bRnAv/PNuoLRr2G2/Dv piquel@piquel.fr"
