@@ -30,11 +30,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777728028,
-        "narHash": "sha256-hWxwNzwC91SQ40QDRv3YbTGqxdTt5F1WBCI9N/hLlDw=",
+        "lastModified": 1777730553,
+        "narHash": "sha256-jdtfqOAi/er1VdGDpIcLvppyvJnHiG+TzhSb+YDxCb8=",
         "owner": "PiquelChips",
         "repo": "dotfiles",
-        "rev": "420c8fba607dac967b0080759634bee47c6b3902",
+        "rev": "d5d7687965c68668945194b192c78a809825fc03",
         "type": "github"
       },
       "original": {
@@ -271,11 +271,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1777428379,
-        "narHash": "sha256-ypxFOeDz+CqADEQNL72haqGjvZQdBR5Vc7pyx2JDttI=",
+        "lastModified": 1777673416,
+        "narHash": "sha256-5c2POKPOjU40Kh0MirOdScBLG0bu9TAuPYAtPRNZMBs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "755f5aa91337890c432639c60b6064bb7fe67769",
+        "rev": "26ef669cffa904b6f6832ab57b77892a37c1a671",
         "type": "github"
       },
       "original": {
@@ -371,13 +371,13 @@
         "lastModified": 1777726940,
         "narHash": "sha256-Zv29t9Cddb0eAnlsprHVpU/WdwcuwIgwYYP1R+7pDr8=",
         "owner": "piquel-fr",
-        "repo": "piqueld",
+        "repo": "piqueld-old",
         "rev": "72ce54fd8b8fd2bfdcf30c752128c3cc63dbd9e6",
         "type": "github"
       },
       "original": {
         "owner": "piquel-fr",
-        "repo": "piqueld",
+        "repo": "piqueld-old",
         "type": "github"
       }
     },
