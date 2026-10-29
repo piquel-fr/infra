@@ -4,29 +4,9 @@
   flake.nixosModules.network =
     { ... }:
     {
-      networking.firewall = {
-        enable = true;
-
-        # No public TCP/UDP ports. All legitimate traffic arrives via tailscale0,
-        # which is already trusted unconditionally by the base module.
-        allowedTCPPorts = [ ];
-        allowedUDPPorts = [ ];
-        # (Tailscale's own UDP port is opened by the base module.)
-
-        # Swarm ports are only needed on the tailscale0 interface.
-        # We open them here so NixOS's firewall doesn't block swarm gossip
-        # arriving from other tailnet peers, then restrict via interface below.
-        interfaces."tailscale0" = {
-          allowedTCPPorts = [
-            2377 # swarm cluster management
-            7946 # container network discovery
-          ];
-          allowedUDPPorts = [
-            7946 # container network discovery
-            4789 # overlay network (VXLAN)
-          ];
-        };
-      };
+      # Traffic from tailnet peers is trusted by the tailscale module. Publicly,
+      # only SSH is open (openssh's default) until it moves to wg-infra (#3).
+      networking.firewall.enable = true;
 
       # --- Network hardening ------------------------------------------------ #
       # Enable SYN cookies to resist SYN flood attacks.

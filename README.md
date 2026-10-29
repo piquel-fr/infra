@@ -23,6 +23,13 @@ From `nix develop`, which provides `deploy` and `agenix`:
 deploy .#piquel-pi
 ```
 
+A host still running a configuration from before this layout needs sudo's
+password once, since passwordless sudo only applies after that deploy:
+
+```sh
+deploy .#piquel-pi --interactive-sudo true
+```
+
 deploy-rs connects as the operator's user (`admin` in `nix/modules/admin.nix`)
 and activates through passwordless sudo. If the host stops answering after
 activation, it rolls back to the previous generation.
