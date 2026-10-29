@@ -1,5 +1,5 @@
 {
-  description = "piquel-pi system configuration";
+  description = "piquel-fr infrastructure";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
@@ -23,12 +23,6 @@
       url = "github:piquel-fr/piqueld";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dotfiles = {
-      url = "github:PiquelChips/dotfiles";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.piqueld.follows = "piqueld";
-      inputs.agenix.follows = "agenix";
-    };
   };
 
   nixConfig = {
@@ -40,23 +34,26 @@
     ];
   };
 
+  # Every file under ./nix is a flake-parts module, except paths containing `/_`
+  # (plain NixOS modules such as hardware configurations).
   outputs =
-    inputs@{ self, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
+        "x86_64-linux"
+        "aarch64-linux"
       ];
-      imports = [
-        ./nix
-        ./nix/hosts
-      ];
+      imports = [ (inputs.import-tree ./nix) ];
       perSystem =
-        { system, pkgs, ... }:
+        { pkgs, inputs', ... }:
         {
-          formatter = pkgs.nixfmt;
-          checks = builtins.mapAttrs (_: inputs.deploy-rs.lib.${system}.deployChecks self.deploy) {
+          formatter = pkgs.nixfmt-tree;
+          devShells.default = pkgs.mkShell {
+            packages = [
+              inputs'.deploy-rs.packages.default
+              inputs'.agenix.packages.default
+            ];
           };
         };
-
     };
-
 }

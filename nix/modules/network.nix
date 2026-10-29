@@ -28,8 +28,6 @@
         };
       };
 
-      # TODO: verify
-
       # --- Network hardening ------------------------------------------------ #
       # Enable SYN cookies to resist SYN flood attacks.
       boot.kernel.sysctl = {
@@ -39,8 +37,6 @@
         "net.ipv6.conf.all.accept_redirects" = 0;
         # Do not send ICMP redirects.
         "net.ipv4.conf.all.send_redirects" = 0;
-        # Disable IP forwarding unless this node is a router.
-        "net.ipv4.ip_forward" = 0;
       };
     };
 }
