@@ -19,6 +19,23 @@ let
     tailscale
   ];
 
+  # deploy-rs's library, with nixpkgs' prebuilt deploy-rs as the activation
+  # tool. The flake's own would be compiled, under emulation for other platforms.
+  deployLib =
+    system:
+    (import inputs.nixpkgs {
+      inherit system;
+      overlays = [
+        inputs.deploy-rs.overlays.default
+        (final: prev: {
+          deploy-rs = {
+            inherit (inputs.nixpkgs.legacyPackages.${system}) deploy-rs;
+            inherit (prev.deploy-rs) lib;
+          };
+        })
+      ];
+    }).deploy-rs.lib;
+
   host = types.submodule {
     options = {
       system = mkOption {
@@ -72,7 +89,7 @@ in
       profiles.system = {
         sshUser = config.admin;
         user = "root";
-        path = inputs.deploy-rs.lib.${host.system}.activate.nixos self.nixosConfigurations.${name};
+        path = (deployLib host.system).activate.nixos self.nixosConfigurations.${name};
       };
     }) config.hosts;
 
@@ -80,7 +97,7 @@ in
       { system, ... }:
       {
         # Only this platform's nodes: another platform's would build its whole system.
-        checks = inputs.deploy-rs.lib.${system}.deployChecks {
+        checks = (deployLib system).deployChecks {
           nodes = lib.filterAttrs (name: _: config.hosts.${name}.system == system) self.deploy.nodes;
         };
       };
