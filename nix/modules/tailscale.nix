@@ -6,8 +6,8 @@
       services.tailscale = {
         enable = true;
 
-        # Pass the auth key on first bring-up if provided.
-        # Tailscale ignores this on subsequent starts once the node is registered.
+        # Logs in with this key whenever the node is logged out or stopped at
+        # boot. A registered, running node never uses it.
         authKeyFile = config.age.secrets.tailscale_auth.path;
       };
 

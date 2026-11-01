@@ -18,11 +18,6 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    piqueld = {
-      url = "github:piquel-fr/piqueld";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   nixConfig = {
@@ -50,7 +45,8 @@
           formatter = pkgs.nixfmt-tree;
           devShells.default = pkgs.mkShell {
             packages = [
-              inputs'.deploy-rs.packages.default
+              # nixpkgs' build, cached and the same `activate` the hosts run.
+              pkgs.deploy-rs
               inputs'.agenix.packages.default
             ];
           };
