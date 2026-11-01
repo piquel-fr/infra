@@ -30,9 +30,9 @@ password once, since passwordless sudo only applies after that deploy:
 deploy .#piquel-pi --interactive-sudo true
 ```
 
-deploy-rs connects as the operator's user (`admin` in `nix/modules/admin.nix`)
-and activates through passwordless sudo. If the host stops answering after
-activation, it rolls back to the previous generation.
+deploy-rs connects as the operator's user, `piquel` (the `admin` option in
+`nix/modules/admin.nix`), and activates through passwordless sudo. If the host
+stops answering after activation, it rolls back to the previous generation.
 
 `nix flake check` evaluates every host and builds the deploy checks for the
 current platform's hosts.
